@@ -5,6 +5,7 @@ steps:
 - name: test
   image: brazildatacube/r-webservices:1.0.0
   commands:
+  - apt-get update & apt-get install pandoc-citeproc -y
   - R CMD build .
   - R CMD check *tar.gz --as-cran
 
