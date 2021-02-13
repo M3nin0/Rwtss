@@ -5,7 +5,8 @@ steps:
 - name: test
   image: brazildatacube/r-webservices:1.0.0
   commands:
-  - exit 0
+  - R CMD build .
+  - R CMD check *.tar.gz >&1 | tee stdfile && cat stdfile | grep -E "(WARNING)" > /dev/null; test $? -eq 1
 - name: coverage
   image: brazildatacube/r-webservices:1.0.0
   environment:
